@@ -1,0 +1,55 @@
+
+{% extends 'base/base.html' %}
+
+{% block title %}{{ destination.place_name }} - Tourist Destinations{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">{{ destination.place_name }}</h1>
+                
+                <div class="location-info mb-3">
+                    <h5><i class="fas fa-map-marker-alt"></i> Location</h5>
+                    <p>{{ destination.district }}, {{ destination.state }}, {{ destination.country }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <h5><i class="fas fa-cloud-sun"></i> Weather</h5>
+                    <span class="badge bg-info">{{ destination.weather }}</span>
+                </div>
+
+                <div class="mb-3">
+                    <h5><i class="fas fa-info-circle"></i> Description</h5>
+                    <p>{{ destination.description }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <a href="{{ destination.google_map_link }}" target="_blank" class="map-link">
+                        <i class="fas fa-map"></i> View on Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'destination_list' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-list"></i> All Destinations
+                    </a>
+                    <a href="{% url 'destination_create' %}" class="btn btn-outline-success">
+                        <i class="fas fa-plus"></i> Add New
+                    </a>
+                    <a href="{% url 'destination_update' destination.id %}" class="btn btn-outline-warning"><i class="fa-solid fa-pen"></i>edit</a>
+                    <a href="{% url 'destination_delete' destination.id %}" class="btn btn-outline-danger">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
